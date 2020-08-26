@@ -40,10 +40,46 @@ namespace RestaurantRaterAPI.Controllers
         }
 
         // Get a rating by its ID ?
+        [HttpGet]
+        public async Task<IHttpActionResult> GetByID(int id)
+        {
+            Rating rating = await _context.Ratings.FindAsync(id);
+            if (rating != null)
+            {
+                //var model = (Rating)_context.Entry(rating).CurrentValues.ToObject();
+                var model = new RatingDetail
+                {
+                    Id = rating.Id,
+                    RestaurantId = rating.RestaurantId,
+                    FoodScore = rating.FoodScore,
+                    EnvironmentScore = rating.EnvironmentScore,
+                    CleanlinessScore = rating.CleanlinessScore,
+                    AverageRating = rating.AverageRating
 
-        // Get ALL Ratings for a specific restaurant
+                };
+
+                return Ok(model);
+            }
+            return NotFound();
+        }
+
+        // Get ALL Ratings for a specific restaurant (just copied from Restaurant Controller)
+        [Route("api/Rating/GetAll/{id}")]
+        public async Task<IHttpActionResult> GetAllByRestaurantId(int id)
+        {
+            {
+                Restaurant restaurant = await _context.Restaurants.FindAsync(id);
+
+                if (restaurant != null)
+                {
+                    return Ok(restaurant);
+                }
+                return NotFound();
+            }
+        }
 
         // Update Rating
+
 
         // Delete Rating
     }
