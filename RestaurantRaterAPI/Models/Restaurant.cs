@@ -29,7 +29,8 @@ namespace RestaurantRaterAPI.Models
                 }
 
                 // Return Average of Total if the count is above 0
-                return (Ratings.Count > 0) ? totalAverageRating / Ratings.Count : 0;
+                // Math.Round(value, 2) where 2 is the number of decimal places I want.
+                return (Ratings.Count > 0) ? Math.Round(totalAverageRating / Ratings.Count, 2) : 0;
             }
         
         }
@@ -46,7 +47,7 @@ namespace RestaurantRaterAPI.Models
                     totalFoodScore += rating.FoodScore;
                 }
 
-                return (Ratings.Count > 0) ? totalFoodScore / Ratings.Count : 0;
+                return (Ratings.Count > 0) ? Math.Round(totalFoodScore / Ratings.Count, 2) : 0;
             }
 
         }
@@ -59,7 +60,7 @@ namespace RestaurantRaterAPI.Models
                 // Another way of doing this.
                 IEnumerable<double> scores = Ratings.Select(rating => rating.EnvironmentScore);
                 double totalEnvironmentScore = scores.Sum();
-                return (Ratings.Count > 0) ? totalEnvironmentScore / Ratings.Count : 0;
+                return (Ratings.Count > 0) ? Math.Round(totalEnvironmentScore / Ratings.Count, 2) : 0;
             }
 
         }
@@ -71,7 +72,7 @@ namespace RestaurantRaterAPI.Models
             {
                 IEnumerable<double> scores = Ratings.Select(rating => rating.CleanlinessScore);
                 double totalCleanlinessScore = scores.Sum();
-                return (Ratings.Count > 0) ? totalCleanlinessScore / Ratings.Count : 0;
+                return (Ratings.Count > 0) ? Math.Round(totalCleanlinessScore / Ratings.Count, 2) : 0;
             }
 
         }
