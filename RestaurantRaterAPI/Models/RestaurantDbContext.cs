@@ -8,7 +8,9 @@ namespace RestaurantRaterAPI.Models
 {
     public class RestaurantDbContext : DbContext
     {
+                                             // Name is from Web config for connection string
         public RestaurantDbContext() : base("DefaultConnection") { }
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
     }
 }

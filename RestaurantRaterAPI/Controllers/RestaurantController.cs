@@ -69,7 +69,6 @@ namespace RestaurantRaterAPI.Controllers
                 {
                     // Update the restaurant now that we found it
                     restaurant.Name = updatedRestaurant.Name;
-                    restaurant.Rating = updatedRestaurant.Rating;
 
                     await _context.SaveChangesAsync();
 
